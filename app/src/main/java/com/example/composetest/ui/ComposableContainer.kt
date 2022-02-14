@@ -5,7 +5,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
@@ -16,7 +18,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.composetest.Screen
 import com.example.composetest.ui.bottomNav.HomeScreen
+import com.example.composetest.ui.bottomNav.ProfileScreen
 import com.example.composetest.ui.bottomNav.SettingsScreen
+import kotlinx.coroutines.launch
 
 private val stringLst = arrayListOf(
     "first",
@@ -34,19 +38,28 @@ val items = listOf(
 @Composable
 fun ComposableContainer() {
     val navController = rememberNavController()
+    val scaffoldState = rememberScaffoldState()
+    val scope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
             TopAppBar {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {
+                    scope.launch{ scaffoldState.drawerState.open()}
+                }) {
                     Icon(Icons.Filled.Menu, "Side menu")
                 }
                 Text(text = "Compose is cool")
             }
         },
+        scaffoldState = scaffoldState,
+        drawerContent = {
+            Text("Пункт меню 1", fontSize = 28.sp)
+            Text("Пункт меню 2", fontSize = 28.sp)
+            Text("Пункт меню 3", fontSize = 28.sp)
+        },
         bottomBar = {
             BottomAppBar {
-
                 BottomNavigation {
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
                     val currentDestination = navBackStackEntry?.destination

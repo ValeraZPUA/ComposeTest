@@ -1,4 +1,4 @@
-package com.example.composetest.ui
+package com.example.composetest.ui.bottomNav
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

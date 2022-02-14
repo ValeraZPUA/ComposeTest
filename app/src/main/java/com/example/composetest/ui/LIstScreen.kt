@@ -8,10 +8,7 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,7 +18,7 @@ import androidx.navigation.NavHostController
 @Composable
 fun ListScreen(stringLst: ArrayList<String>, navController: NavHostController) {
 
-    val message = remember{ mutableStateOf("") }
+    var message by remember{ mutableStateOf("") }
     val stringList = remember { mutableStateListOf<String>().also {
         it.addAll(stringLst)
     } }
@@ -31,7 +28,7 @@ fun ListScreen(stringLst: ArrayList<String>, navController: NavHostController) {
         .padding(5.dp)) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             OutlinedTextField(
-                value = message.value,
+                value = message,
                 placeholder = { Text("Enter text") },
                 leadingIcon = { Icon(Icons.Filled.Send, contentDescription = "send") },
                 shape = MaterialTheme.shapes.medium.copy(CornerSize(100.dp)),
@@ -40,7 +37,7 @@ fun ListScreen(stringLst: ArrayList<String>, navController: NavHostController) {
                     cursorColor = Color.Black,
                     focusedIndicatorColor = Color.Green
                 ),
-                onValueChange = { newText -> message.value = newText },
+                onValueChange = { newText -> message = newText },
                 modifier = Modifier
                     .fillMaxWidth()
             )
@@ -48,7 +45,7 @@ fun ListScreen(stringLst: ArrayList<String>, navController: NavHostController) {
             Button(
                 modifier = Modifier.padding(5.dp),
                 onClick = {
-                    stringList.add(message.value)
+                    stringList.add(message)
                 }
             ) {
                 Text(text = "Add To List")
