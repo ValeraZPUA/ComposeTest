@@ -33,7 +33,6 @@ fun ListScreen(stringLst: ArrayList<String>, navController: NavHostController) {
                 leadingIcon = { Icon(Icons.Filled.Send, contentDescription = "send") },
                 shape = MaterialTheme.shapes.medium.copy(CornerSize(100.dp)),
                 colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color.Red,
                     cursorColor = Color.Black,
                     focusedIndicatorColor = Color.Green
                 ),
