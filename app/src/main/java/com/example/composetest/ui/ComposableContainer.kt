@@ -18,7 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.composetest.Screen
 import com.example.composetest.ui.bottomNav.HomeScreen
-import com.example.composetest.ui.bottomNav.ProfileScreen
+import com.example.composetest.ui.bottomNav.profileScreen.ProfileScreen
 import com.example.composetest.ui.bottomNav.SettingsScreen
 import kotlinx.coroutines.launch
 

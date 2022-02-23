@@ -1,4 +1,4 @@
-package com.example.composetest.ui.bottomNav
+package com.example.composetest.ui.bottomNav.profileScreen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,15 +7,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.composetest.App
-import com.example.composetest.di.modules.NetworkModule
+import javax.inject.Inject
 
-class ProfileScreen(private val api: NetworkModule) {
+class ProfileScreen() {
+
+    @Inject
+    lateinit var viewModel: ProfileScreenViewModel
 
     init {
         App.appComponent.inject(this)
+        viewModel.getRandomUser()
     }
-
-
 
     @Composable
     fun ProfileScreen() {
