@@ -98,7 +98,7 @@ fun ComposableContainer() {
             {
                 SelectedItem(it.arguments?.getString("selectedItem") ?: "def value")
             }
-            composable(Screen.Profile.route) { ProfileScreen() }
+            composable(Screen.Profile.route) { ProfileScreen().ProfileScreen() }
             composable(Screen.Home.route) { HomeScreen() }
             composable(Screen.Settings.route) { SettingsScreen() }
         }

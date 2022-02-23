@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface ApiInterface {
 
     @GET("random_name")
-    suspend fun getRandomUser() : Response<NameX>
+    suspend fun getRandomUser() : NameX
 }
